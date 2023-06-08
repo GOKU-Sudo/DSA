@@ -1,0 +1,1 @@
+{"name":"Local: rain","url":"d:\\DSA-Workspace (1)\\DSA\\questions\\rain.cpp","tests":[{"id":1671460317089,"input":"4\n1 3 10\n5 6 7\n3 8 9\n2 5 6","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\DSA-Workspace (1)\\DSA\\questions\\rain.cpp","group":"local","local":true}
