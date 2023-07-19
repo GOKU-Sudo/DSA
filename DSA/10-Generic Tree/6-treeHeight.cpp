@@ -100,6 +100,26 @@ void printLevelWise(TreeNode<int>* root){
       }
 }
 
+int countNode(TreeNode<int>* root){
+        int ans=1;                    //Count the no. of nodes
+        for(int i=0;i<root->children.size();i++){
+            ans=ans+countNode(root->children[i]);
+        }
+
+        return ans;
+}
+
+
+int heightTree(TreeNode<int>* root){
+      int heightMax=0;
+
+      for(int i=0;i<root->children.size();i++){
+            heightMax=max(heightMax,heightTree(root->children[i]));
+      }
+
+      return heightMax+1;
+
+}
 
 int main(){
       // TreeNode<int>* root=new TreeNode<int>(1);
@@ -121,5 +141,7 @@ int main(){
 
       TreeNode<int>* root3=takeInputLevelWise();
       printLevelWise(root3);
+      cout<<"No. of nodes "<<countNode(root3)<<endl;
+      cout<<"Tree Height "<<heightTree(root3);
       return 0;
 }
