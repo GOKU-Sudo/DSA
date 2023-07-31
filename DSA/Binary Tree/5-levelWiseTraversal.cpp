@@ -42,32 +42,31 @@ BTNode<int>* takeInput(){  //not optimal way of taking input becuz we have to ke
 
 BTNode<int>* takeInputLevelWise(){ // iterative input
     int rootData;
-    cout<<"Enter root data"<<endl;
+    cout<<"Enter Root Data :";
     cin>>rootData;
-    BTNode<int>* root = new BTNode<int>(rootData);
+    BTNode<int>* root=new BTNode<int>(rootData);
     queue<BTNode<int>*> q;
     q.push(root);
-
     while(!q.empty()){
-        BTNode<int>* f = q.front();
-        q.pop();
+      BTNode<int>* front=q.front();
+      q.pop();
+      cout<<"Enter left child of :"<<front->data<<endl;
+      int left;
+      cin>>left;
+      if(left!=-1){
+            BTNode<int>* leftChild=new BTNode<int>(left);
+            q.push(leftChild);
+            front->left=leftChild;
+      }
+      cout<<"Enter right child of :"<<front->data<<endl;
+      int right;
+      cin>>right;
+      if(right!=-1){
+            BTNode<int>* rightChild=new BTNode<int>(right);
+            q.push(rightChild);
+            front->right=rightChild;
+      }
 
-         cout<<"Enter left child of "<<f->data<<endl;
-         int leftChildData;
-         cin>>leftChildData;
-         if(leftChildData != -1){
-            BTNode<int>* child = new BTNode<int>(leftChildData);
-            q.push(child);
-            f->left = child;
-         }
-         cout<<"Enter right child of "<<f->data<<endl;
-         int rightChildData;
-         cin>>rightChildData;
-         if(rightChildData != -1){
-            BTNode<int>* child = new BTNode<int>(rightChildData);
-            q.push(child);
-            f->right = child;
-         }
     }
     return root;
 }
@@ -86,6 +85,8 @@ void printTree(BTNode<int>*root){  // recursiveprinting
        printTree(root->left);
        printTree(root->right);
 }
+
+
 
 vector<vector<int>> levelOrder(BTNode<int>* root){
       vector<vector<int>> v;
@@ -124,13 +125,33 @@ vector<vector<int>> levelOrder(BTNode<int>* root){
       return v;
 }
 
+void levelWisePrint(BTNode<int>* root){
+      if(root==NULL) return;
+      queue<BTNode<int>*> q;
+      q.push(root);
+      while(!q.empty()){
+            BTNode<int>* front=q.front();
+            q.pop();
+            cout<<front->data<<": ";
+            if(front->left){
+                  q.push(front->left);
+                  cout<<front->left->data<<" ";
+            }            
+            if(front->right){
+                  q.push(front->right);
+                  cout<<front->right->data<<" ";
+            }
+            cout<<endl;            
+      }
+
+}
+
 
 int main(){
-      // BTNode<int>* root=takeInput();
+   
       BTNode<int>* root=takeInputLevelWise();
 
-      printTree(root);
-      levelOrder(root);
-      delete root;
+      levelWisePrint(root);
+
       return 0;
 }
