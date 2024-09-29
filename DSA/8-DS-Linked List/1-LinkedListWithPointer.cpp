@@ -14,7 +14,6 @@ class Node{
 
 class LinkedList{
       Node* head=NULL;
-      
 
       public:
       int size=0;
