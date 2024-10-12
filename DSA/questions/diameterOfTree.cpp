@@ -13,7 +13,7 @@ using namespace std;
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-lass Solution {
+class Solution {
 public:
 
 pair<int,int> heightDiameter(TreeNode* root){
