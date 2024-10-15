@@ -1,0 +1,10 @@
+# Ignore .vscode directory
+.vscode/
+
+# Ignore DSA_personal workspace
+DSA_personal/
+
+# Other common ignores
+node_modules/
+*.log
+*.env
