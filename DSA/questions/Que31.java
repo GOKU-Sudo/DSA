@@ -31,6 +31,7 @@ public class Que31{
             // System.out.println(str11[1]);
             // String str22=new String();
             // str22.append(str11[0]);
+            //
             sbr2.reverse();
             // System.out.println(sbr2);
             int flag=0;
