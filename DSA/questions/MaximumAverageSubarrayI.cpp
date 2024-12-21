@@ -18,37 +18,34 @@
 // 1 <= k <= n <= 10^5
 // -10^4 <= nums[i] <= 10^4
 
+#include <vector>
+#include <algorithm>
+using namespace std;
+
 class Solution {
 public:
       double findMaxAverage(vector<int>& nums, int k) {
-            // Initialize max_avg to the lowest possible double value
-            double max_avg = numeric_limits<double>::lowest();
-            // Initialize the window sum to 0
-            double w_sum = 0;
-            // Get the size of the input array
-            int n = nums.size();
-            // Initialize the start index of the window
-            int start = 0;
+            double curr = 0, maxSum;
+            int size = nums.size();
 
-            // Iterate through the array
-            for (int i = 0; i < n; i++) {
-                  // Add the current element to the window sum
-                  w_sum += nums[i];
-
-                  // Check if the current window size is equal to k
-                  if ((i - start + 1) == k) {
-                        // Calculate the average of the current window
-                        double avg = w_sum / k;
-                        // Update max_avg if the current average is greater
-                        max_avg = max(avg, max_avg);
-                        // Subtract the element at the start of the window from the window sum
-                        w_sum -= nums[start];
-                        // Move the start index to the right
-                        start += 1;
-                  }
+            // Calculate the sum of the first 'k' elements
+            for(int i = 0; i < k; i++) {
+                  curr = curr + nums.at(i);
             }
 
-            // Return the maximum average found
-            return max_avg;
+            // Initialize maxSum with the sum of the first 'k' elements
+            maxSum = curr;
+
+            // Slide the window of size 'k' across the array
+            for(int i = 1; i <= size - k; i++) {
+                  // Update the current sum by subtracting the element that is left behind
+                  // and adding the new element in the window
+                  curr = curr - nums.at(i - 1) + nums.at(i + k - 1);
+                  // Update maxSum if the current sum is greater
+                  maxSum = max(maxSum, curr);
+            }
+
+            // Return the maximum average
+            return maxSum / k;
       }
 };
