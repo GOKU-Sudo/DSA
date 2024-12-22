@@ -27,31 +27,40 @@
 class Solution {
 public:
       int maxVowels(string s, int k) {
-            string vowels = "aeiou"; // String containing all vowels
-            int n = s.length(); // Length of the input string
-            int count = 0; // Variable to store the maximum number of vowels
-            int curr = 0; // Variable to store the current number of vowels in the current window
+            // Initialize current vowel count and maximum vowel count
+            int curr = 0, maxVowel;
 
-            // Count the number of vowels in the first window of size k
+            // Get the length of the string
+            int size = s.length();
+
+            // Define the vowels
+            string vowel = "aeiou";
+
+            // Count the number of vowels in the first substring of length k
             for (int i = 0; i < k; i++) {
-                  if (vowels.find(s[i]) != string::npos) {
+                  if (vowel.find(s[i]) != string::npos) {
                         curr++;
                   }
             }
-            count = curr; // Initialize count with the number of vowels in the first window
+
+            // Set the initial maximum vowel count
+            maxVowel = curr;
 
             // Slide the window over the string
-            for (int i = k; i < n; i++) {
-                  if (vowels.find(s[i]) != string::npos) {
-                        curr++; // Increment current count if the new character is a vowel
+            for (int i = 1; i <= size - k; i++) {
+                  // Remove the effect of the character that is sliding out of the window
+                  if (vowel.find(s[i - 1]) != string::npos) {
+                        curr--;
                   }
-                  if (vowels.find(s[i - k]) != string::npos) {
-                        curr--; // Decrement current count if the character going out of the window is a vowel
+                  // Add the effect of the character that is sliding into the window
+                  if (vowel.find(s[i + k - 1]) != string::npos) {
+                        curr++;
                   }
-
-                  count = max(count, curr); // Update the maximum count
+                  // Update the maximum vowel count
+                  maxVowel = max(curr, maxVowel);
             }
 
-            return count; // Return the maximum number of vowels found in any window of size k
+            // Return the maximum number of vowels found in any substring of length k
+            return maxVowel;
       }
 };
