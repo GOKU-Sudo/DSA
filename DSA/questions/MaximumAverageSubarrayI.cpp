@@ -45,7 +45,7 @@ public:
                   maxSum = max(maxSum, curr);
             }
 
-            // Return the maximum average
+            // Return the maximum average...
             return maxSum / k;
       }
 };
