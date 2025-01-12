@@ -15,6 +15,7 @@ int min1(int a,int b,int c){
 
 int main() {
 	// your code goes here
+	//
 	int n;
 	cin>>n;
 	while(n--){
