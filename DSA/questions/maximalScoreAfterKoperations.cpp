@@ -15,7 +15,7 @@
 
 // The ceiling function ceil(val) is the least integer greater than or equal to val.
 
- 
+//
 
 // Example 1:
 
